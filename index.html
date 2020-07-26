@@ -26,11 +26,11 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button id="first-minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="first-input" type="text" class="form-control text-center" value="1">
+                           <input id="first-input" type="text" class="form-control text-center" value="0">
                            <button id="first-plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$ <span id="firstIteamAmount">1219</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" id="firstRemoveIteam" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -44,12 +44,12 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button id="second-minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="second-input" type="text" class="form-control text-center" value="1">
+                           <input id="second-input" type="text" class="form-control text-center" value="0">
                            <button id="second-plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$ <span id="secondIteamAmount">59</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" id="secondRemoveIteam" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id="subtotal">1,278</span></h5>
+                        <h5>$ <span id="subtotal">00</span></h5>
                         <h5>$0</h5>
-                        <h5>$ <span id="total">1,278</span></h5>
+                        <h5>$ <span id="total">00</span></h5>
                      </div>
                   </div>
                </div>
@@ -78,6 +78,17 @@
       </div>
    </section>
    <script>
+
+            //remove item
+      // const firstItem = document.getElementById("firstRemoveItem");
+      //    firstItem.addEventListener("click", function(){
+      //       document.getElementById("firstCardItem").style.display = "none";
+      // })
+      // const secondItem = document.getElementById("secondRemoveItem");
+      //    secondItem.addEventListener("click", function(){
+      //       document.getElementById("secondCardItem").style.display = "none";
+      // })
+
       //First Iteam Plus Button
       const addFirstIteam = document.getElementById("first-plus-btn");
       addFirstIteam.addEventListener("click", function(){
@@ -111,32 +122,30 @@
       //Function for Add Iteam
       function addIteamFunction(iteamNumber, iteamPriceId, price){
          const iteamvalue = document.getElementById(iteamNumber).value;
-         const floatValue = parseFloat(iteamvalue);
-         const iteamPlus = document.getElementById(iteamNumber).value = floatValue + 1;
-         const iteamPrice = document.getElementById(iteamPriceId).innerText;
-         const floatPrice = parseFloat(iteamPrice);
-         const iteamPriceUpdate = document.getElementById(iteamPriceId).innerText = floatPrice + price;
+         const intValue = parseInt(iteamvalue);
+         const iteamPlus = document.getElementById(iteamNumber).value = intValue + 1;
+         const priceTotal = iteamPlus * price; 
+         document.getElementById(iteamPriceId).innerText = priceTotal;
 
          const subTotal = document.getElementById("subtotal").innerText;
-         const floatsubTotal = parseFloat(subTotal);
-         const subPrice = document.getElementById("subtotal").innerText = floatsubTotal + price;
-         const totalPrice = document.getElementById("total").innerText = floatsubTotal + price;
+         const intsubTotal = parseInt(subTotal);
+         const subPrice = document.getElementById("subtotal").innerText = intsubTotal + price;
+         const totalPrice = document.getElementById("total").innerText = intsubTotal + price; 
       }
 
 
       //Function for Minus Iteam
       function minusIteamFunction(iteamNumber, iteamPriceId, price){
          const iteamvalue = document.getElementById(iteamNumber).value;
-         const floatValue = parseFloat(iteamvalue);
-         const iteamPlus = document.getElementById(iteamNumber).value = floatValue - 1;
-         const iteamPrice = document.getElementById(iteamPriceId).innerText;
-         const floatPrice = parseFloat(iteamPrice);
-         const iteamPriceUpdate = document.getElementById(iteamPriceId).innerText = floatPrice - price;
+         const intValue = parseInt(iteamvalue);
+         const iteamPlus = document.getElementById(iteamNumber).value = intValue - 1;
+         const priceTotal = iteamPlus * price; 
+         document.getElementById(iteamPriceId).innerText = priceTotal; 
 
          const subTotal = document.getElementById("subtotal").innerText;
-         const floatsubTotal = parseFloat(subTotal);
-         const subPrice = document.getElementById("subtotal").innerText = floatsubTotal - price;
-         const totalPrice = document.getElementById("total").innerText = floatsubTotal - price;
+         const intsubTotal = parseInt(subTotal);
+         const subPrice = document.getElementById("subtotal").innerText = intsubTotal - price;
+         const totalPrice = document.getElementById("total").innerText = intsubTotal - price;
 
       }
    </script>
